@@ -13,7 +13,7 @@ export default function Leaderboard() {
   // Fetch branches once
   const fetchBranches = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/leaderboard/branches");
+      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard/branches");
       if (Array.isArray(res.data)) {
         setBranches(res.data);
       } else {
@@ -27,7 +27,7 @@ export default function Leaderboard() {
   // Fetch full leaderboard once for top 3 & global ranks
   const fetchGlobalLeaderboard = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/leaderboard");
+      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard");
       const sorted = res.data.sort(
         (a, b) => b.totalPoint - a.totalPoint || b.rand - a.rand
       );
@@ -42,7 +42,7 @@ export default function Leaderboard() {
   // Fetch filtered list but keep global ranks
   const fetchFilteredStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/leaderboard", {
+      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard", {
         params: { search, branch },
       });
 
@@ -71,7 +71,7 @@ export default function Leaderboard() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-purple-900 via-gray-900 to-black text-white px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-bold text-center mb-10 neon-text">
-        🔥 Campus Legends
+        🔥 VGU Campus Legends
       </h1>
 
       {/* Search & Filter */}
@@ -83,7 +83,7 @@ export default function Leaderboard() {
           onChange={(e) => setSearch(e.target.value)}
           className="p-2 rounded bg-gray-800 border border-gray-600"
         />
-        <select
+        {/* <select
           value={branch}
           onChange={(e) => setBranch(e.target.value)}
           className="p-2 rounded bg-gray-800 border border-gray-600"
@@ -94,7 +94,7 @@ export default function Leaderboard() {
               {b}
             </option>
           ))}
-        </select>
+        </select> */}
       </div>
 
       {/* Podium (global top 3) */}
