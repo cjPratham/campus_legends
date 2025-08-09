@@ -13,10 +13,14 @@ export default function Login() {
     setError("");
 
     try {
-      const res = await axios.post("https://campus-legends.onrender.com/api/admin/login", {
+      const res = await axios.post("/api/admin/login", {
         email,
         password,
       });
+      // const res = await axios.post("https://campus-legends.onrender.com/api/admin/login", {
+      //   email,
+      //   password,
+      // });
 
       localStorage.setItem("token", res.data.token);
       navigate("/admin"); // redirect to admin dashboard

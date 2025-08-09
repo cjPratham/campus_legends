@@ -13,7 +13,8 @@ export default function Leaderboard() {
   // Fetch branches once
   const fetchBranches = async () => {
     try {
-      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard/branches");
+      // const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard/branches");
+      const res = await axios.get("/api/branches");
       if (Array.isArray(res.data)) {
         setBranches(res.data);
       } else {
@@ -27,7 +28,8 @@ export default function Leaderboard() {
   // Fetch full leaderboard once for top 3 & global ranks
   const fetchGlobalLeaderboard = async () => {
     try {
-      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard");
+      // const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard");
+      const res = await axios.get("/api/leaderboard");
       const sorted = res.data.sort(
         (a, b) => b.totalPoint - a.totalPoint || b.rand - a.rand
       );
@@ -42,9 +44,12 @@ export default function Leaderboard() {
   // Fetch filtered list but keep global ranks
   const fetchFilteredStudents = async () => {
     try {
-      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard", {
+      const res = await axios.get("/api/leaderboard", {
         params: { search, branch },
       });
+      // const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard", {
+      //   params: { search, branch },
+      // });
 
       // The backend should already send global ranks, so no re-ranking here
       const filtered = res.data.filter(
@@ -98,17 +103,21 @@ export default function Leaderboard() {
       </div>
 
       {/* Podium (global top 3) */}
-      <Podium students={globalTop3} />
+      <Podium 
+        students={globalTop3}
+      />
 
       {/* Rest of leaderboard */}
       <div className="mx-auto space-y-3 w-full max-w-5xl">
         {students.map((student) => (
-          <LeaderboardRow
-            key={student._id}
-            student={student}
-            rank={student.rank}
-          />
-        ))}
+        <LeaderboardRow
+          key={student._id}
+          student={student}
+          rank={student.rank}            // backend rank
+          rankChange={student.rankChange} // rank movement
+          pointsChange={student.pointsChange} // points movement
+        />
+      ))}
       </div>
     </div>
   );
