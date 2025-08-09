@@ -14,7 +14,7 @@ export default function Leaderboard() {
   const fetchBranches = async () => {
     try {
       // const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard/branches");
-      const res = await axios.get("/api/branches");
+      const res = await axios.get("https://campus-legends.onrender.com/api/branches");
       if (Array.isArray(res.data)) {
         setBranches(res.data);
       } else {
@@ -29,7 +29,7 @@ export default function Leaderboard() {
   const fetchGlobalLeaderboard = async () => {
     try {
       // const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard");
-      const res = await axios.get("/api/leaderboard");
+      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard");
       const sorted = res.data.sort(
         (a, b) => b.totalPoint - a.totalPoint || b.rand - a.rand
       );
@@ -44,7 +44,7 @@ export default function Leaderboard() {
   // Fetch filtered list but keep global ranks
   const fetchFilteredStudents = async () => {
     try {
-      const res = await axios.get("/api/leaderboard", {
+      const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard", {
         params: { search, branch },
       });
       // const res = await axios.get("https://campus-legends.onrender.com/api/leaderboard", {

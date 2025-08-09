@@ -12,7 +12,7 @@ export default function Admin() {
   const handleReset = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("/api/admin/reset-changes", {
+      const response = await fetch("https://campus-legends.onrender.com/api/admin/reset-changes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export default function Admin() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("/api/admin/reset-data", {
+      const response = await fetch("https://campus-legends.onrender.com/api/admin/reset-data", {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

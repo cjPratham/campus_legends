@@ -37,7 +37,7 @@ export default function FileUpload({ onSuccess }) {
       //     "Content-Type": "multipart/form-data",
       //   },
       // });
-      const res = await axios.post("/api/upload", formData, {
+      const res = await axios.post("https://campus-legends.onrender.com/api/upload", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
